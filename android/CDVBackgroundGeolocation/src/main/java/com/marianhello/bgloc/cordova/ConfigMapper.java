@@ -98,6 +98,9 @@ public class ConfigMapper {
                 config.setTemplate(LocationTemplateFactory.fromJSON(postTemplate));
             }
         }
+        if (jObject.has("angleFilter")) {
+            config.setAngleFilter(jObject.getInt("angleFilter"));
+        }
 
         return config;
     }
@@ -127,6 +130,7 @@ public class ConfigMapper {
         json.put("syncThreshold", config.getSyncThreshold());
         json.put("httpHeaders", new JSONObject(config.getHttpHeaders()));
         json.put("maxLocations", config.getMaxLocations());
+        json.put("angleFilter", config.getAngleFilter());
         LocationTemplate tpl = config.getTemplate();
         Object template = JSONObject.NULL;
         if (tpl instanceof HashMapLocationTemplate) {
